@@ -1,6 +1,7 @@
 // @ts-check
 const path = require('path');
 const fs = require('fs');
+const SondaEsbuildPlugin = require('sonda').SondaEsbuildPlugin;
 
 require('esbuild').context({
 	entryPoints: {
@@ -10,7 +11,7 @@ require('esbuild').context({
 		'node_modules/vue-typescript-plugin-pack/index': './node_modules/@vue/typescript-plugin/index.js',
 	},
 	bundle: true,
-	metafile: process.argv.includes('--metafile'),
+	sourcemap: true,
 	outdir: '.',
 	external: ['vscode'],
 	format: 'cjs',
@@ -19,6 +20,7 @@ require('esbuild').context({
 	define: { 'process.env.NODE_ENV': '"production"' },
 	minify: process.argv.includes('--minify'),
 	plugins: [
+		SondaEsbuildPlugin(),
 		{
 			name: 'umd2esm',
 			setup(build) {
@@ -63,19 +65,6 @@ require('esbuild').context({
 						path.resolve(__dirname, '../node_modules/@vue/language-core/schemas/vue-tsconfig.schema.json'),
 						path.resolve(__dirname, '../dist/schemas/vue-tsconfig.schema.json'),
 					);
-				});
-			},
-		},
-		{
-			name: 'meta',
-			setup(build) {
-				build.onEnd((result) => {
-					if (result.metafile && result.errors.length === 0) {
-						fs.writeFileSync(
-							path.resolve(__dirname, '../meta.json'),
-							JSON.stringify(result.metafile),
-						);
-					}
 				});
 			},
 		},

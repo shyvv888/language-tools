@@ -4,8 +4,7 @@ node_modules
 *.tsbuildinfo
 *.vsix
 .vscode-test-web
-extensions/*/meta.json
-extensions/*/stats.html
+extensions/vscode/sonda-report.html
 extensions/vscode/src/generated-meta.ts
 
 packages/*/*.d.ts
