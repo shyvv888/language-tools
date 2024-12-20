@@ -26,5 +26,7 @@
 		"packages/*/lib/**/*.d.ts": true,
 		"packages/*/lib/**/*.js": true,
 		"packages/*/lib/**/*.map": true
-	}
+	},
+	"CodeMoss.code": "YTFMMGY1MGMTZJU4ZS0ZYJZKLTLKN2YTNTG4OGU2ZJGWZMUW:6406e000-ae74-4558-aaeb-c8f9af91a3c0",
+	"CodeMoss.inlineCompletion.triggerMode": "manual"
 }
